@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api";
 
 function Home({ darkMode }) {
   const [students, setStudents] = useState([]);
@@ -10,10 +10,7 @@ function Home({ darkMode }) {
 
   const getStudents = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/students"
-      );
-
+      const response = await api.get("/students");
       setStudents(response.data);
     } catch (error) {
       console.error("Failed to get students:", error);
@@ -46,8 +43,7 @@ function Home({ darkMode }) {
 
   const totalIT = students.filter(
     (student) =>
-      student.department?.toLowerCase() ===
-      "information technology"
+      student.department?.toLowerCase() === "information technology"
   ).length;
 
   const totalYear4 = students.filter(
@@ -85,7 +81,6 @@ function Home({ darkMode }) {
         {/* HERO */}
 
         <section className="min-h-[70vh] flex items-center">
-
           <div className="w-full">
 
             <div
@@ -100,7 +95,6 @@ function Home({ darkMode }) {
             </div>
 
             <div className="max-w-4xl">
-
               <h1
                 className={`text-5xl md:text-7xl font-bold tracking-tight leading-tight ${
                   darkMode ? "text-white" : "text-slate-900"
@@ -114,9 +108,7 @@ function Home({ darkMode }) {
 
               <p
                 className={`text-lg md:text-xl mt-6 max-w-2xl leading-relaxed ${
-                  darkMode
-                    ? "text-slate-400"
-                    : "text-slate-500"
+                  darkMode ? "text-slate-400" : "text-slate-500"
                 }`}
               >
                 A modern student management system to add,
@@ -147,11 +139,8 @@ function Home({ darkMode }) {
                 </button>
 
               </div>
-
             </div>
-
           </div>
-
         </section>
 
         {/* STATISTICS */}
@@ -169,9 +158,7 @@ function Home({ darkMode }) {
           >
             <p
               className={`text-sm font-medium ${
-                darkMode
-                  ? "text-slate-400"
-                  : "text-slate-500"
+                darkMode ? "text-slate-400" : "text-slate-500"
               }`}
             >
               Total Students
@@ -179,9 +166,7 @@ function Home({ darkMode }) {
 
             <h2
               className={`text-4xl font-bold mt-3 ${
-                darkMode
-                  ? "text-white"
-                  : "text-slate-900"
+                darkMode ? "text-white" : "text-slate-900"
               }`}
             >
               {totalStudents}
@@ -203,9 +188,7 @@ function Home({ darkMode }) {
           >
             <p
               className={`text-sm font-medium ${
-                darkMode
-                  ? "text-slate-400"
-                  : "text-slate-500"
+                darkMode ? "text-slate-400" : "text-slate-500"
               }`}
             >
               IT Students
@@ -231,9 +214,7 @@ function Home({ darkMode }) {
           >
             <p
               className={`text-sm font-medium ${
-                darkMode
-                  ? "text-slate-400"
-                  : "text-slate-500"
+                darkMode ? "text-slate-400" : "text-slate-500"
               }`}
             >
               4th Year Students
@@ -267,16 +248,12 @@ function Home({ darkMode }) {
                 : "border-slate-200"
             }`}
           >
-
             <div className="flex items-center justify-between">
 
               <div>
-
                 <h2
                   className={`text-xl md:text-2xl font-bold ${
-                    darkMode
-                      ? "text-white"
-                      : "text-slate-900"
+                    darkMode ? "text-white" : "text-slate-900"
                   }`}
                 >
                   Recent Students
@@ -291,7 +268,6 @@ function Home({ darkMode }) {
                 >
                   Recently added student records
                 </p>
-
               </div>
 
               <button
@@ -302,18 +278,14 @@ function Home({ darkMode }) {
               </button>
 
             </div>
-
           </div>
 
           {students.length === 0 ? (
-
             <div className="p-12 text-center">
 
               <div
                 className={`w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-5 ${
-                  darkMode
-                    ? "bg-slate-800"
-                    : "bg-slate-100"
+                  darkMode ? "bg-slate-800" : "bg-slate-100"
                 }`}
               >
                 <svg
@@ -338,9 +310,7 @@ function Home({ darkMode }) {
 
               <h3
                 className={`text-lg font-bold ${
-                  darkMode
-                    ? "text-white"
-                    : "text-slate-900"
+                  darkMode ? "text-white" : "text-slate-900"
                 }`}
               >
                 No students available
@@ -357,9 +327,7 @@ function Home({ darkMode }) {
               </p>
 
             </div>
-
           ) : (
-
             <div
               className={`divide-y ${
                 darkMode
@@ -367,12 +335,10 @@ function Home({ darkMode }) {
                   : "divide-slate-100"
               }`}
             >
-
               {students
                 .slice(-5)
                 .reverse()
                 .map((student) => (
-
                   <div
                     key={student._id}
                     className={`px-6 md:px-8 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 transition ${
@@ -381,7 +347,6 @@ function Home({ darkMode }) {
                         : "hover:bg-slate-50"
                     }`}
                   >
-
                     <div className="flex items-center gap-4">
 
                       <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center font-bold">
@@ -391,7 +356,6 @@ function Home({ darkMode }) {
                       </div>
 
                       <div>
-
                         <h3
                           className={`font-semibold ${
                             darkMode
@@ -411,7 +375,6 @@ function Home({ darkMode }) {
                         >
                           {student.rollNumber}
                         </p>
-
                       </div>
 
                     </div>
@@ -429,13 +392,9 @@ function Home({ darkMode }) {
                     <div className="text-sm font-semibold text-blue-500">
                       Year {student.year}
                     </div>
-
                   </div>
-
                 ))}
-
             </div>
-
           )}
 
         </section>

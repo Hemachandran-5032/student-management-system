@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../api";
 
 function AddStudent({ darkMode }) {
   const initialStudent = {
@@ -26,13 +26,10 @@ function AddStudent({ darkMode }) {
     event.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/students",
-        {
-          ...student,
-          year: Number(student.year),
-        }
-      );
+      const response = await api.post("/students", {
+        ...student,
+        year: Number(student.year),
+      });
 
       alert(response.data.message);
 
@@ -136,12 +133,9 @@ function AddStudent({ darkMode }) {
                 : "border-slate-200"
             }`}
           >
-
             <h2
               className={`text-xl font-bold ${
-                darkMode
-                  ? "text-white"
-                  : "text-slate-900"
+                darkMode ? "text-white" : "text-slate-900"
               }`}
             >
               Student Information
@@ -156,7 +150,6 @@ function AddStudent({ darkMode }) {
             >
               Enter the student's details below.
             </p>
-
           </div>
 
           {/* FORM */}
@@ -165,7 +158,6 @@ function AddStudent({ darkMode }) {
             onSubmit={handleSubmit}
             className="p-6 md:p-8"
           >
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
               {/* NAME */}
@@ -343,7 +335,6 @@ function AddStudent({ darkMode }) {
             </div>
 
           </form>
-
         </section>
 
         {/* INFORMATION CARD */}
@@ -355,12 +346,9 @@ function AddStudent({ darkMode }) {
               : "bg-white border-slate-200"
           }`}
         >
-
           <h3
             className={`font-bold ${
-              darkMode
-                ? "text-white"
-                : "text-slate-900"
+              darkMode ? "text-white" : "text-slate-900"
             }`}
           >
             Before submitting
@@ -376,7 +364,6 @@ function AddStudent({ darkMode }) {
             Make sure the roll number, email address and phone
             number are correct before adding the student.
           </p>
-
         </section>
 
       </main>
