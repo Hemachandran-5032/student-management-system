@@ -37,20 +37,24 @@ function App() {
 
       {/* FOOTER */}
       <footer
-        className={
-          darkMode
-            ? "bg-black text-white py-10 text-center"
-            : "bg-slate-900 text-white py-10 text-center"
-        }
-      >
-        <h2 className="text-lg font-bold">
-          Student Management System
-        </h2>
+  className={
+    darkMode
+      ? "bg-black text-white py-10 text-center"
+      : "bg-slate-900 text-white py-10 text-center"
+  }
+>
+  <h2 className="text-lg font-bold">
+    Student Management System
+  </h2>
 
-        <p className="text-slate-400 text-sm mt-2">
-          Built with React, Node.js, Express and MongoDB
-        </p>
-      </footer>
+  <p className="text-slate-400 text-sm mt-2">
+    Developed by <span className="text-blue-400 font-semibold">Hemachandran B R</span>
+  </p>
+
+  <p className="text-slate-500 text-xs mt-3">
+    Built with React, Node.js, Express and MongoDB
+  </p>
+</footer>
     </div>
   );
 }
